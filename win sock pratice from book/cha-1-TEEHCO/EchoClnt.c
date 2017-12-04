@@ -8,7 +8,7 @@
 #define ECHO_DEF_PORT     7 /* 连接的缺省端口 */
 #define ECHO_BUF_SIZE   256 /* 缓冲区的大小	  */
 
-int main(int argc, char **argv)
+int main()
 {
     WSADATA wsa_data;
     SOCKET echo_soc = 0;      /* socket 句柄 */
@@ -16,17 +16,9 @@ int main(int argc, char **argv)
     unsigned short port = ECHO_DEF_PORT;
     int result = 0, send_len = 0;
     char *test_data = "Hello World!", recv_buf[ECHO_BUF_SIZE];
-
-  
-	/*	argv = 1;*/
-        printf("run");
-		const char *Server_Ip = "127.0.0.1";
-		port = 7;
-    
-
-  /*  if (argc >= 3)
-        port = atoi(argv[2]);
-*/
+    printf("run");
+	const char *Server_Ip = "127.0.0.1";
+	const port = 27;
     WSAStartup(MAKEWORD(2,0), &wsa_data);/* 初始化 WinSock资源 */
     send_len = strlen(test_data);
 
