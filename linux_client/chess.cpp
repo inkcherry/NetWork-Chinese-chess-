@@ -32,5 +32,5 @@ CAMP horse::_can_move(const int&to_x, const int&to_y, chess *chess_board_[10][9]
 		j = from_y;
 	}
 	if (!is_NO_CHESS(chess_board_[i][j]))
-		return false;//°íÂíÍÈ
+		return false;//ç»Šé©¬è…¿
 }
