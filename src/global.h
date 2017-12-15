@@ -6,16 +6,16 @@ enum { R_END = 7 };
 #define B_START 8;
 #define B_END 14;
 
-//    Àß			≥µ           ¬Ì         ≈⁄          ø			œÛ				±¯
+//    Â∏Ö			ËΩ¶           È©¨         ÁÇÆ         Â£´			Ë±°				ÂÖµ
 enum CHESS_TYPE {
-	R_KING = 1, R_CAR = 2, R_HORSE = 3, R_CANON = 4, R_BISHOP = 5, R_ELEPHANT = 6, R_PAWN = 7,  //∫Ï∑Ω’Û”™
-	B_KING = 8, B_CAR = 9, B_HORSE = 10, B_CANON = 11, B_BISHOP = 12, B_ELEPHANT = 13, B_PAWN = 14,//∫⁄∑Ω’Û”™
-	NO_CHESS = 0																				  //Œﬁ◊”
+	R_KING = 1, R_CAR = 2, R_HORSE = 3, R_CANON = 4, R_BISHOP = 5, R_ELEPHANT = 6, R_PAWN = 7,  //Á∫¢ÊñπÈòµËê•
+	B_KING = 8, B_CAR = 9, B_HORSE = 10, B_CANON = 11, B_BISHOP = 12, B_ELEPHANT = 13, B_PAWN = 14,//ÈªëÊñπÈòµËê•
+	NO_CHESS = 0																				  //Êó†Â≠ê
 };  
 
 typedef bool CAMP;
-const CAMP R_PARTY = 0;     //∫Ï∑ΩŒ™0
-const CAMP B_PARTY = 1;   //∫⁄∑ΩŒ™1
+const CAMP R_PARTY = 0;     //Á∫¢Êñπ‰∏∫0
+const CAMP B_PARTY = 1;   //ÈªëÊñπ‰∏∫1
 //#ifndef _CAMP_
 //#define _CAMP_
 //

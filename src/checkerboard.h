@@ -17,12 +17,12 @@ public:
 	bool select_chess(const int &x, const int &y);
 	bool move_chess(const int &x, const int &y);
 private:
-	int chessboard[10][9]; //棋盘
+	int chessboard[10][9]; //妫嬬洏
 	chess *chess_board[10][9];
 	void _initchessboard();
-	CAMP cur_camp;		  //当前活动阵营
-	chess *cur_chess;      //当前活动棋子
-	void _translate_to_chess_obj(const CHESS_TYPE &chess_, const int &i, const int &j);//将棋谱翻译成对象
+	CAMP cur_camp;		  //褰撳墠娲诲姩闃佃惀
+	chess *cur_chess;      //褰撳墠娲诲姩妫嬪瓙
+	void _translate_to_chess_obj(const CHESS_TYPE &chess_, const int &i, const int &j);//灏嗘璋辩炕璇戞垚瀵硅薄
 	char* _translate_to_word(const CHESS_TYPE &chess);
 };
 

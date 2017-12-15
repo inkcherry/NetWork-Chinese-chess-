@@ -55,7 +55,7 @@ void  checkerboard::show_chessboard()
 
 }
 
-void checkerboard::_translate_to_chess_obj(const CHESS_TYPE &chess_,const int &i,const int &j)  //Ğ´Õâ¸ö¶«Î÷ÊÇ»¹ÓĞÒ»µãÊÇ¿ÉÒÔ¸´ÅÌ
+void checkerboard::_translate_to_chess_obj(const CHESS_TYPE &chess_,const int &i,const int &j)  //å†™è¿™ä¸ªä¸œè¥¿æ˜¯è¿˜æœ‰ä¸€ç‚¹æ˜¯å¯ä»¥å¤ç›˜
 {
 	switch (chess_)
 	{
@@ -112,91 +112,91 @@ char* checkerboard::_translate_to_word(const CHESS_TYPE &chess){
 	switch (chess)		
 	{
 	case R_KING:
-		return "Ë§";
+		return "å¸…";
 		break;
 	case R_CAR:
-		return "³µ";
+		return "è½¦";
 		break;
 	case R_HORSE:
-		return "Âí";
+		return "é©¬";
 		break;
 	case R_CANON:
-		return "ÅÚ";
+		return "ç‚®";
 		break;
 	case R_BISHOP:
-		return "Ê¿";
+		return "å£«";
 		break;
 	case R_ELEPHANT:
-		return "Ïó";
+		return "è±¡";
 		break;
 	case R_PAWN:
-		return "±ø";
+		return "å…µ";
 		break;
 	case B_KING:
-		return "Œ¢";
+		return "å°‡";
 		break;
 	case B_CAR:
-		return "Ü‡";
+		return "è»Š";
 		break;
 	case B_HORSE:
-		return "ñR";
+		return "é¦¬";
 		break;
 	case B_CANON:
-		return "°’";
+		return "çš°";
 		break;
 	case B_BISHOP:
-		return "ÊË";
+		return "ä»•";
 		break;
 	case B_ELEPHANT:
-		return "Ïà";
+		return "ç›¸";
 		break;
 	case B_PAWN:
-		return "×ä";
+		return "å’";
 		break;
 	case NO_CHESS:
-		return "¿Ú";
+		return "å£";
 		break;
 	default:
 		break;
 	}
-	/*return "ºÇ";*/
+	/*return "å‘µ";*/
 }
-bool checkerboard::select_chess(const int &x, const int &y)  //xÊÇÁĞ10   yÊÇ9
+bool checkerboard::select_chess(const int &x, const int &y)  //xæ˜¯åˆ—10   yæ˜¯9
 {
 	if (x < 0 || x>9 || y < 0 || y>10)   //test
 	{
-		std::cout << "Ñ¡ÔñÊ§°ÜÖØÑ¡"; return false;
+		std::cout << "é€‰æ‹©å¤±è´¥é‡é€‰"; return false;
 	}
 
-	chess* target_chess = chess_board[x][y];  //Ñ¡ÔñÄ¿µÄÆå×Ó
-	if ((!is_NO_CHESS(target_chess)&&target_chess->get_camp() != cur_camp)|| is_NO_CHESS(target_chess))   //²»ÊÇµ±Ç°ÑÕÉ«Ö´²½ »òÕßÃ»ÓĞÆå×Ó
+	chess* target_chess = chess_board[x][y];  //é€‰æ‹©ç›®çš„æ£‹å­
+	if ((!is_NO_CHESS(target_chess)&&target_chess->get_camp() != cur_camp)|| is_NO_CHESS(target_chess))   //ä¸æ˜¯å½“å‰é¢œè‰²æ‰§æ­¥ æˆ–è€…æ²¡æœ‰æ£‹å­
 	{
-		std::cout << "²»ÊÇµ±Ç°ÑÕÉ«Ö´²½»òÕßÃ»ÓĞÆå×Ó³åÑ¡"<<std::endl; return false;
+		std::cout << "ä¸æ˜¯å½“å‰é¢œè‰²æ‰§æ­¥æˆ–è€…æ²¡æœ‰æ£‹å­å†²é€‰"<<std::endl; return false;
 	}
 	cur_chess = target_chess;
 	return true;
 }
 bool checkerboard::move_chess(const int &x, const int &y)
 {
-	chess* target_pos = chess_board[x][y];   //Ñ¡ÔñÄ¿µÄÎ»ÖÃ
+	chess* target_pos = chess_board[x][y];   //é€‰æ‹©ç›®çš„ä½ç½®
 
-	if (!is_NO_CHESS(target_pos)&&target_pos->get_camp() ==cur_camp) //Ä¿±êÎ»ÖÃÓĞ×Ô¼ºµÄÆå×Ó
+	if (!is_NO_CHESS(target_pos)&&target_pos->get_camp() ==cur_camp) //ç›®æ ‡ä½ç½®æœ‰è‡ªå·±çš„æ£‹å­
 	{
-		std::cout << "ÄÇÀïÓĞ×Ô¼ºµÄÆå×Ó"<<std::endl; return false;
+		std::cout << "é‚£é‡Œæœ‰è‡ªå·±çš„æ£‹å­"<<std::endl; return false;
 	}
 	if (!(cur_chess->_can_move(x, y,chess_board)))
 	{
-		std::cout << "²»·ûºÏÒÆ¶¯¹æ·¶"<<std::endl; return false;
+		std::cout << "ä¸ç¬¦åˆç§»åŠ¨è§„èŒƒ"<<std::endl; return false;
 	}
 
-	//ÒÆ¶¯³É¹¦
-	if (!is_NO_CHESS(target_pos))//Èç¹ûÄÇÀïÓĞÆå
-		delete target_pos;//Îö¹¹µô
-	//int¸¨Öú¾ØÕó
-	chessboard[cur_chess->get_position().first][cur_chess->get_position().second] = NO_CHESS;//ÒÆ×ß
+	//ç§»åŠ¨æˆåŠŸ
+	if (!is_NO_CHESS(target_pos))//å¦‚æœé‚£é‡Œæœ‰æ£‹
+		delete target_pos;//ææ„æ‰
+	//intè¾…åŠ©çŸ©é˜µ
+	chessboard[cur_chess->get_position().first][cur_chess->get_position().second] = NO_CHESS;//ç§»èµ°
 	chessboard[x][y] = cur_chess->get_type();
 
-	reset_cur_camp(); //½»»»»î¶¯ÕóÓª
+	reset_cur_camp(); //äº¤æ¢æ´»åŠ¨é˜µè¥
 
 	return true;
 }

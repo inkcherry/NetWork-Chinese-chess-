@@ -8,11 +8,11 @@ int main()
 	int x, y;
 	while (true)
 	{
-		std::cout << "选棋"<<std::endl;
+		std::cout << "閫夋"<<std::endl;
 		std::cin >> x >> y;
-		if (m->select_chess(x, y)) //选择成功
+		if (m->select_chess(x, y)) //閫夋嫨鎴愬姛
 		{
-			std::cout << "移动" <<std::endl;
+			std::cout << "绉诲姩" <<std::endl;
 			std::cin >> x >> y;
 			if (m->move_chess(x, y))
 				m->show_chessboard();
