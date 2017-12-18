@@ -9,12 +9,13 @@ int i,maxi,ret;
 int epfd;
 
 //状态信息
-#define TIPS_S_OP "choose opponent success"    //choose Opponent success; 
-#define TIPS_S_LO "login success,set your name"    //login success;
-
+#define TIPS_S_OP "choose opponent success"            //choose Opponent success; 
+#define TIPS_S_LO "login success,set your name"        //login success;
+const std::string TIPS_S_SP ="success to match opponent";
+const std::string TIP_S_BE_SP="challenge a contest\n\r";   //被挑战
 //提示信息
-#define TIPS_C_OP "choose an opponent"    //choose a Opponent;
-#define TIPS_S_NA "set your name"    //set name
+#define TIPS_S_NA "set your name"                      //set name
+const std::string TIPS_C_OP="please choose an opp or wait for connection\n\r";
 
 void gfun::Send(int fd,std::string &str)
 {
@@ -137,7 +138,7 @@ void gfun::run()
                         perror("read error:");  
                 }  
                 else if(len == 0)//客户端关闭连接  
-                {  
+                {   std::cout<<"断开连接";
                     close(fd[i]);  
                     fd[i] = -1;  
                     auto iter=name_pool.find(fd[i]);
@@ -168,26 +169,45 @@ void gfun::deal_msg(decltype(name_pool.begin()) &iter,std::string &msg)
   {    
       std::cout<<"set name"<<std::endl; 
       iter->second.first=msg;
-      gfun::Send(iter->first,gfun::get_user_table());
+      gfun::Send(iter->first,gfun::get_user_table()+TIPS_C_OP);
       return ;
   }
-    else if(iter->second.second<0)         //向对手发送请求  ！！！此处暂不予服务器端msg格式检测         
+  else if(iter->second.second<0)         //向对手发送请求  ！！！此处暂不予服务器端msg格式检测         
   {   
-      int op_fd=3;
-      if(fd[op_fd]>0)                      //用户存在
-      {gfun::Send(op_fd,"#sp");}          //!!!!此处暂为测试不予检测直接连接
-      else {gfun::Send(op_fd,"#sp");}
+      int op_fd=atoi(msg.c_str());
+      std::cout<<"用户想要连接"<<op_fd<<std::endl;
+      if(gfun::find(op_fd)>0)             //用户存在,ps:允许你自己跟你自己玩,只要你乐意
+      {   
+          iter->second.second=op_fd;  //连接当前选择用户这个
+          auto op_iter=name_pool.find(op_fd);
+          op_iter->second.second=iter->first;
+          gfun::Send(op_fd,(iter->second.first)+TIP_S_BE_SP);
+          gfun::Send(iter->first,TIPS_S_SP+(op_iter->second.first)+"\n\r");
+      }          //!!!!此处暂为测试不予检测直接连接
+      else {gfun::Send(op_fd,"#defaut sp");}
   }
+  else 
+  {
 
-    
+  }  
+      
 }
 
 std::string gfun::get_user_table()
 {
-      std::string all_users="users talbe:\n";
+      std::string all_users="users talbe:\n\r";
       for(auto iter=name_pool.begin();iter!=name_pool.end();++iter)
       {   if(((iter->second).second)<0)              //没有匹配的对手
-          {all_users+=std::to_string(iter->first)+" :"+(iter->second.first)+"\n";}
-      }
+          {all_users+=std::to_string(iter->first)+" :"+(iter->second.first)+"\n\r";}
+        }
       return all_users;
+}
+int gfun::find(int &ta_fd) //返回目的sockfd的下标
+{
+    for(int i=0;i<OPEN_MAX;i++)
+    {
+        if(fd[i]==ta_fd)
+        return i;
+    }
+    return -1;            //can not't find
 }
