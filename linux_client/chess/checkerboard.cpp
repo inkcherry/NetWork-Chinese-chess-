@@ -188,13 +188,18 @@ bool checkerboard::move_chess(const int &x, const int &y)
 	{
 		std::cout << "不符合移动规范"<<std::endl; return false;
 	}
-
 	//移动成功
 	if (!is_NO_CHESS(target_pos))//如果那里有棋
 		delete target_pos;//析构掉
+	//真实矩阵
+	
+	chess_board[x][y]=chess_board[cur_chess->get_position().first][cur_chess->get_position().second];
+	chess_board[cur_chess->get_position().first][cur_chess->get_position().second] = nullptr;
 	//int辅助矩阵
 	chessboard[cur_chess->get_position().first][cur_chess->get_position().second] = NO_CHESS;//移走
 	chessboard[x][y] = cur_chess->get_type();
+	//定义该对象position
+	cur_chess->set_pos(x,y);
 
 	reset_cur_camp(); //交换活动阵营
 

@@ -9,6 +9,7 @@ int i,maxi,ret;
 int epfd;
 
 //状态信息
+#define TIPS_S_PY "#100"
 #define TIPS_S_OP "choose opponent success"            //choose Opponent success; 
 #define TIPS_S_LO "login success,set your name"        //login success;
 const std::string TIPS_S_SP ="success to match opponent";
@@ -183,12 +184,15 @@ void gfun::deal_msg(decltype(name_pool.begin()) &iter,std::string &msg)
           op_iter->second.second=iter->first;
           gfun::Send(op_fd,(iter->second.first)+TIP_S_BE_SP);
           gfun::Send(iter->first,TIPS_S_SP+(op_iter->second.first)+"\n\r");
+   //发送状态码  唤醒客户端游戏进程     
+          gfun::Send(op_fd,TIPS_S_PY);
+          gfun::Send(iter->first,TIPS_S_PY);
       }          //!!!!此处暂为测试不予检测直接连接
       else {gfun::Send(op_fd,"#defaut sp");}
   }
-  else 
+  else   //gaming
   {
-
+     gfun::Send(iter->second.second,msg);
   }  
       
 }
