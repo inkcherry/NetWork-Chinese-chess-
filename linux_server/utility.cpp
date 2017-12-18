@@ -184,9 +184,11 @@ void gfun::deal_msg(decltype(name_pool.begin()) &iter,std::string &msg)
           op_iter->second.second=iter->first;
           gfun::Send(op_fd,(iter->second.first)+TIP_S_BE_SP);
           gfun::Send(iter->first,TIPS_S_SP+(op_iter->second.first)+"\n\r");
-   //发送状态码  唤醒客户端游戏进程     
-          gfun::Send(op_fd,TIPS_S_PY);
-          gfun::Send(iter->first,TIPS_S_PY);
+          //发送状态码  唤醒客户端游戏进程     
+          sleep(1);
+          int is_offensive=rand()%2;  //1为先手玩家 随机生成
+          gfun::Send(op_fd,TIPS_S_PY+std::to_string(is_offensive));
+          gfun::Send(iter->first,TIPS_S_PY+std::to_string(!is_offensive));
       }          //!!!!此处暂为测试不予检测直接连接
       else {gfun::Send(op_fd,"#defaut sp");}
   }

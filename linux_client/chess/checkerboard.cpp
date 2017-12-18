@@ -34,24 +34,24 @@ void  checkerboard::_initchessboard()  //
 
 void  checkerboard::show_chessboard()
 {
-	std::cout << "  ";
+	std::cout <<"\n\r"<< "  ";
 	for (int i = 0; i < 9; i++)
 		std::cout << i<<" ";
-	std::cout<<std::endl;
+	std::cout<<"\n\r";
 
 
 	for (int i = 0; i < 10; i++)
 	{
-		std::cout << i<<" ";
+		std::cout<<"\n\r" << i<<" ";
 		for (int j = 0; j < 9; j++)
 			std::cout << _translate_to_word((CHESS_TYPE)chessboard[i][j]);
-		std::cout <<" "<<i<< std::endl;
+		std::cout <<" "<<i<< "\n\r";
 		
 	}
-	std::cout << "  ";
+	std::cout <<"\n\r"<< "  ";
 	for (int i = 0; i < 9; i++)
 		std::cout << i << " ";
-	std::cout << std::endl;
+	std::cout << "\n\r";
 
 }
 

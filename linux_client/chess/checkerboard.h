@@ -2,10 +2,6 @@
 //#include "global.h";
 #include "chess.h"
 #include <iostream>
-
-
-
-
 class checkerboard
 {
 public:
