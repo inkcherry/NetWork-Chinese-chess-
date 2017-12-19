@@ -45,7 +45,7 @@ void  checkerboard::show_chessboard()
 		std::cout<<"\n\r" << i<<" ";
 		for (int j = 0; j < 9; j++)
 			std::cout << _translate_to_word((CHESS_TYPE)chessboard[i][j]);
-		std::cout <<" "<<i<< "\n\r";
+		std::cout <<" "<<i;
 		
 	}
 	std::cout <<"\n\r"<< "  ";
@@ -60,46 +60,48 @@ void checkerboard::_translate_to_chess_obj(const CHESS_TYPE &chess_,const int &i
 	switch (chess_)
 	{
 	case R_KING:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new king(R_PARTY, std::make_pair(i, j));
 	    break;
 	case R_CAR:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new car(R_PARTY, std::make_pair(i, j));
 		break;
 	case R_HORSE:
 		chess_board[i][j] = new horse(R_PARTY, std::make_pair(i, j));
 		break;
 	case R_CANON:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new canon(R_PARTY, std::make_pair(i, j));
 		break;
 	case R_BISHOP:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new bishop(R_PARTY, std::make_pair(i, j));
 		break;
 	case R_ELEPHANT:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new elephant(R_PARTY, std::make_pair(i, j));
 		break;
 	case R_PAWN:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new pawn(R_PARTY, std::make_pair(i, j));
 		break;
+
+		
 	case B_KING:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new king(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_CAR:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new car(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_HORSE:
 		chess_board[i][j] = new horse(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_CANON:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new canon(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_BISHOP:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new bishop(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_ELEPHANT:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] =new elephant(B_PARTY, std::make_pair(i, j));
 		break;
 	case B_PAWN:
-		chess_board[i][j] = nullptr;
+		chess_board[i][j] = new pawn(B_PARTY, std::make_pair(i, j));
 		break;
 	case NO_CHESS:
 		chess_board[i][j] = nullptr;
