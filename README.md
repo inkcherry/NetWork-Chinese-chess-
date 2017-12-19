@@ -30,5 +30,5 @@
 	then you can challenge others or wait for connection
 	
 	----------------------------
- PS:It's just a simple model for learn socket,mayby i will add something in the future: )
+ PS:It's just a simple model for learning socket,mayby i will add something in the future: )
  
